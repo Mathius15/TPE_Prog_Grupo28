@@ -15,6 +15,11 @@ public class Tarea {
         this.tiempoEjecucion = tiempoEjecucion;
         this.esCritica = esCritica;
         this.prioridad = prioridad;
+        if (prioridad > 0 && prioridad < 100) {
+            this.prioridad = prioridad;
+        } else {
+            this.prioridad = 100;
+        }
     }
 
     @Override

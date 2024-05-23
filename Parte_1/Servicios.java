@@ -41,12 +41,16 @@ public class Servicios {
     public List<Tarea> servicio3(int prioridadInferior, int prioridadSuperior) {
         Collection<Tarea> cole = getTareas();
         List<Tarea> rta = new LinkedList<>();
-        if (!cole.isEmpty()) {
-            for (Tarea tarea : cole) {
-                if(tarea.getPrioridad() <= prioridadSuperior && tarea.getPrioridad() >= prioridadInferior) {
-                    rta.add(tarea);
+        if ((prioridadInferior > 0 && prioridadInferior < prioridadSuperior) && (prioridadSuperior < 100)) {
+            if (!cole.isEmpty() ) {
+                for (Tarea tarea : cole) {
+                    if(tarea.getPrioridad() <= prioridadSuperior && tarea.getPrioridad() >= prioridadInferior) {
+                        rta.add(tarea);
+                    }
                 }
             }
+        } else {
+            System.out.println("La prioridad de las tareas no esta dentro de un rango valido");
         }
         return rta;
     }

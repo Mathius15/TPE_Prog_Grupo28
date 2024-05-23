@@ -11,12 +11,16 @@ public class Main {
         String pathTareas = "C:\\Users\\USUARIO\\Desktop\\TPE_Prog_Grupo28\\Dataset\\Tareas.csv";
 
         Servicios servicios = new Servicios(pathProcesadores, pathTareas);
+        if (servicios.servicio1("T1") == null) {
+            System.out.println("LA TAREA NO EXISTE");
+        } else {
 
-        System.out.println(servicios.servicio1("T1"));
+            System.out.println(servicios.servicio1("T1"));
+        }
         System.out.println("-----");
         System.out.println(servicios.servicio2(false));
         System.out.println("-----");
-        System.out.println(servicios.servicio3(10, 70));
+        System.out.println(servicios.servicio3(60, 70));
 
     }
 }

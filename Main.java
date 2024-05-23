@@ -7,11 +7,16 @@ import java.util.List;
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        String pathProcesadores = "C:\\Users\\Nataliia\\Desktop\\Caro\\TPE_Prog3-main\\TPE_Prog3_G28\\Dataset\\Procesadores.csv";
-        String pathTareas = "C:\\Users\\Nataliia\\Desktop\\Caro\\TPE_Prog3-main\\TPE_Prog3_G28\\Dataset\\Tareas.csv";
+        String pathProcesadores = "C:\\Users\\USUARIO\\Desktop\\TPE_Prog_Grupo28\\Dataset\\Procesadores.csv";
+        String pathTareas = "C:\\Users\\USUARIO\\Desktop\\TPE_Prog_Grupo28\\Dataset\\Tareas.csv";
 
         Servicios servicios = new Servicios(pathProcesadores, pathTareas);
 
+        System.out.println(servicios.servicio1("T1"));
+        System.out.println("-----");
+        System.out.println(servicios.servicio2(false));
+        System.out.println("-----");
+        System.out.println(servicios.servicio3(10, 70));
 
     }
 }

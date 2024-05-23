@@ -17,17 +17,16 @@ public class Tarea {
         this.prioridad = prioridad;
     }
 
-
-
-
-
-
-
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "Tarea{" +
+                "id='" + id + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", tiempoEjecucion=" + tiempoEjecucion +
+                ", esCritica=" + esCritica +
+                ", prioridad=" + prioridad +
+                '}' + '\n';
+    }
 
     public String getId() {
         return id;

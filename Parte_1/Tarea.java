@@ -1,6 +1,6 @@
 package Parte_1;
 
-import java.util.HashMap;
+import java.util.Objects;
 
 public class Tarea {
     private String id;

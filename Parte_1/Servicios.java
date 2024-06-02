@@ -1,5 +1,6 @@
 package Parte_1;
 
+import java.awt.image.AreaAveragingScaleFilter;
 import java.util.*;
 
 public class Servicios {
@@ -73,6 +74,5 @@ public class Servicios {
     public Collection<Tarea> getTareas() {
         return hashTareas.values();
     }
-
 }
 

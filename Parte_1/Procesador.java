@@ -1,24 +1,61 @@
 package Parte_1;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Procesador {
     private String id;
-    private int codigoProcesador;
+    private String codigoProcesador;
     private boolean estaRefrigerado;
     private int anioFuncionamiento;
+    private List<Tarea> tareas;
 
-    public Procesador(String id, int codigoProcesador, boolean estaRefrigerado, int anioFuncionamiento) {
+    public Procesador(String id, String codigoProcesador, boolean estaRefrigerado, int anioFuncionamiento) {
         this.id = id;
         this.codigoProcesador = codigoProcesador;
         this.estaRefrigerado = estaRefrigerado;
         this.anioFuncionamiento = anioFuncionamiento;
+        this.tareas = new ArrayList<>();
     }
 
+    //Cambios mati
 
+    public List<Tarea> getTareas() {
+        return new ArrayList<>(tareas);
+    }
 
+    public void setTareas(List<Tarea> list){
+        this.tareas = list;
+    }
 
+    public void addTarea(Tarea t) {
+        tareas.add(t);
+    }
 
+    public void removeTarea(Tarea t){
+        tareas.remove(t);
+    }
 
+    public boolean tengoTarea(Tarea t){
+        return tareas.contains(t);
+    }
 
+    public int tiempoMaximo(){
+        int total = 0;
+        for (Tarea t : tareas){
+            total += t.getTiempoEjecucion();
+        }
+        return total;
+    }
+
+    public void imprimirProcesadorconTareas (){
+        System.out.print(this.getId() + " : ");
+        for (Tarea t : tareas){
+            System.out.print(t.getId() + " , ");
+        }
+    }
+
+    // ---------------------------------------------------------
 
     public String getId() {
         return id;
@@ -28,11 +65,11 @@ public class Procesador {
         this.id = id;
     }
 
-    public int getCodigoProcesador() {
+    public String getCodigoProcesador() {
         return codigoProcesador;
     }
 
-    public void setCodigoProcesador(int codigoProcesador) {
+    public void setCodigoProcesador(String codigoProcesador) {
         this.codigoProcesador = codigoProcesador;
     }
 

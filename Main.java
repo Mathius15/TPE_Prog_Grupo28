@@ -27,16 +27,18 @@ public class Main {
 
         //Parte 2
         CSVReader csv = new CSVReader();
-        List<Procesador> procesadores;
+        List<Procesador> procesadores1;
+        List<Procesador> procesadores2;
         List<Tarea> tareas = new ArrayList<>(servicios.servicio2(true));
         tareas.addAll(servicios.servicio2(false));
 
 
 
 
-        procesadores = csv.readProcessors(pathProcesadores);
-        Backtraking backPrueba = new Backtraking(procesadores,tareas);
+        procesadores1 = csv.readProcessors(pathProcesadores);
+        procesadores2 = csv.readProcessors(pathProcesadores);
+        int n = 50;
+        Backtraking backPrueba = new Backtraking(procesadores1, procesadores2, tareas,n);
         backPrueba.backtracking();
-
     }
 }

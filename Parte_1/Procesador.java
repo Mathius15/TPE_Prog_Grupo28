@@ -18,6 +18,14 @@ public class Procesador {
         this.tareas = new ArrayList<>();
     }
 
+    public Procesador(String id, String codigoProcesador, boolean estaRefrigerado, int anioFuncionamiento, List<Tarea> tareasnuevas) {
+        this.id = id;
+        this.codigoProcesador = codigoProcesador;
+        this.estaRefrigerado = estaRefrigerado;
+        this.anioFuncionamiento = anioFuncionamiento;
+        this.setTareas(tareasnuevas);
+    }
+
     //Cambios mati
 
     public List<Tarea> getTareas() {
@@ -28,7 +36,22 @@ public class Procesador {
         this.tareas = list;
     }
 
-    public void addTarea(Tarea t) {
+    public boolean puedoAddTarea(Tarea t, int n) {
+        if (t.isEsCritica()){
+            if ((! this.ultimaTareaCritica()) && ( ! this.sobrecalentamiento(t,n))){
+                return true;
+            }
+        }
+        else if (this.isEstaRefrigerado()){
+                return true;
+        }
+        else if (! sobrecalentamiento(t,n)) {
+                return true;
+        }
+        return false;
+    }
+
+    public void addTarea(Tarea t){
         tareas.add(t);
     }
 
@@ -53,6 +76,22 @@ public class Procesador {
         for (Tarea t : tareas){
             System.out.print(t.getId() + " , ");
         }
+    }
+
+    private boolean ultimaTareaCritica(){
+        if (tareas.isEmpty()){
+            return false;
+        }
+        return tareas.get(tareas.size() - 1).isEsCritica();
+    }
+
+    public boolean sobrecalentamiento(Tarea t, int n){
+        if ( this.isEstaRefrigerado()){
+            return false;
+        } else if ((tiempoMaximo() + t.getTiempoEjecucion() ) >= n){
+                return true;
+            }
+        return false;
     }
 
     // ---------------------------------------------------------

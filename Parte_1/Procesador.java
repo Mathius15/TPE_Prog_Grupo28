@@ -94,6 +94,11 @@ public class Procesador {
         return false;
     }
 
+    // devuelve true cuando el procesador es mejor (menor tiempo de ejercucion) que otro.
+    public boolean esMejorProcesador(Procesador mejorP){
+        return (this.tiempoMaximo() < mejorP.tiempoMaximo());
+    }
+
     // ---------------------------------------------------------
 
     public String getId() {

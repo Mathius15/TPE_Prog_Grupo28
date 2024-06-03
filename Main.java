@@ -1,4 +1,5 @@
 import Parte2.Backtraking;
+import Parte2.Greedy;
 import Parte_1.CSVReader;
 import Parte_1.Procesador;
 import Parte_1.Servicios;
@@ -13,30 +14,34 @@ public class Main {
         String pathTareas = "C:\\Users\\Mati\\Desktop\\Tpe_Prog_3_28\\Dataset\\Tareas.csv";
 
         Servicios servicios = new Servicios(pathProcesadores, pathTareas);
-        /*
+
+        System.out.println("parte 1");
+
         if (servicios.servicio1("T1") == null) {
             System.out.println("LA TAREA NO EXISTE");
         } else {
             System.out.println(servicios.servicio1("T1"));
         }
-        System.out.println("-----");
         System.out.println(servicios.servicio2(false));
-        System.out.println("-----");
         System.out.println(servicios.servicio3(60, 70));
-        */
 
         //Parte 2
+        System.out.println("--------------------------------------------------------------");
+        System.out.println("Parte 2");
         CSVReader csv = new CSVReader();
         List<Procesador> procesadores1;
         List<Tarea> tareas = new ArrayList<>(servicios.servicio2(true));
         tareas.addAll(servicios.servicio2(false));
 
 
-
-
         procesadores1 = csv.readProcessors(pathProcesadores);
         int n = 50;
         Backtraking backPrueba = new Backtraking(procesadores1, tareas,n);
         backPrueba.backtracking();
+
+        System.out.println("\n");
+
+        Greedy g = new Greedy(procesadores1, tareas, 110);
+        g.greedy();
     }
 }

@@ -58,14 +58,6 @@ public class Backtraking {
         if (soySolucion(posSolucion)) {
             //soy mejor solucion?
             if (esLaMejorSolucion(solucion, posSolucion)) {
-                System.out.println("---------------------" + "\n");
-                this.imprimirSolucion(solucion);
-                System.out.println(metrica);
-                System.out.println("---------------------" + "\n");
-                this.imprimirSolucion(posSolucion);
-                System.out.println(metrica);
-                System.out.println("---------------------" + "\n");
-
                 solucion = this.deepCopyProcesadores(posSolucion);
             }
         } else {

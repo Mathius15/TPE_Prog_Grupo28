@@ -9,14 +9,12 @@ import java.util.List;
 public class Backtraking {
 
     private List<Tarea> tareas;
-    private List<Procesador> procesadores1;
-    private List<Procesador> procesadores2;
+    private List<Procesador> procesadores;
     private int maximoTiempoNoRefrigerado;
     private int metrica;
 
-    public Backtraking(List<Procesador> pro1,List<Procesador> pro2, List<Tarea> tar, int n){
-        this.procesadores1 = pro1;
-        this.procesadores2 = pro2;
+    public Backtraking(List<Procesador> pro1, List<Tarea> tar, int n){
+        this.procesadores = pro1;
         this.tareas = tar;
         this.maximoTiempoNoRefrigerado = n;
         this.metrica = 0;
@@ -25,9 +23,9 @@ public class Backtraking {
     public void backtracking(){
         this.metrica = 0;
         //Creo la lista solucion con todos los procesadores cargados
-        List<Procesador> solucion = new ArrayList<>(procesadores1);
+        List<Procesador> solucion = new ArrayList<>(procesadores);
         //Creo la lista que va a ir probando todas las tareas en cada procesador
-        List<Procesador> posSolucion = new ArrayList<>(procesadores2);
+        List<Procesador> posSolucion = this.deepCopyProcesadores(solucion);
 
 
         //Se va a quedar con la mejor combinacion de tareas en cada procesador
@@ -56,7 +54,9 @@ public class Backtraking {
     private List<Procesador> back (List<Procesador> solucion, List<Procesador> posSolucion, int count) {
         metrica++;
         //Soluciones
+        //checkeo si mi lista de posibles solucion es una solucion.
         if (soySolucion(posSolucion)) {
+            //soy mejor solucion?
             if (esLaMejorSolucion(solucion, posSolucion)) {
                 System.out.println("---------------------" + "\n");
                 this.imprimirSolucion(solucion);
@@ -65,9 +65,7 @@ public class Backtraking {
                 this.imprimirSolucion(posSolucion);
                 System.out.println(metrica);
                 System.out.println("---------------------" + "\n");
-                //solucion ahora tiene tareas asignadas de forma eficiente
-                //Problema estoy cargando a solucion la referencia a las tareas de posSolucion
-                //por lo que al sacarlas despues pierdo la referencia yo tambien en solucion
+
                 solucion = this.deepCopyProcesadores(posSolucion);
             }
         } else {
@@ -105,18 +103,6 @@ public class Backtraking {
             }
         }
         return true;
-    }
-
-    private boolean todasTareasAsignadas(List<Procesador> list){
-        List<Tarea> aux = new ArrayList<>();
-        for (Procesador p : list){
-            for (Tarea t : p.getTareas()){
-                if (this.tareas.contains(t)){
-                    aux.add(t);
-                }
-            }
-        }
-        return aux.size() == tareas.size();
     }
 
     private boolean esLaMejorSolucion(List<Procesador> solucion, List<Procesador> posSolucion){

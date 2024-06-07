@@ -22,6 +22,9 @@ public class Greedy {
 
     }
 
+    /*Este algoritmo lo planteamos de la siguiente manera: nos paramos en una tarea de la lista de tareas y recorremos todos los procesadores,
+    * quedandonos con el mas apto que encontremos. Para decidir cual es el mas apto tenemos varios metodos tanto en Greedy como en la clase Procesador, que corroboran
+    * si es mas apto*/
     public void greedy() {
 
         metrica = 0;

@@ -21,6 +21,7 @@ public class Servicios {
     }
 
     //Complejidad: O(1)
+    /*En este servicio la complejidad es O(1) ya que la complejidad interna del metodo .get de un hash map es O(1)*/
     public Tarea servicio1(String ID) {
         if (!hashTareas.isEmpty())
             return hashTareas.get(ID);
@@ -30,6 +31,8 @@ public class Servicios {
 
 
     //Complejidad: 0(1)
+    /*En este servicio la complejidad es O(1) ya que tenemos de ante mano las 2 listas posibles a retornar, por lo tanto la complejidad es
+    retornar una lista O(1)*/
     public List<Tarea> servicio2(boolean esCritica) {
         if (esCritica) {
             return tareasCriticas;
@@ -39,6 +42,7 @@ public class Servicios {
     }
 
     //Complejidad: 0(n)
+    /* En este servicio la complejidad es O(n) ya que es necesario recorrer toda una coleccion de objetos O(n)*/
     public List<Tarea> servicio3(int prioridadInferior, int prioridadSuperior) {
         Collection<Tarea> cole = getTareas();
         List<Tarea> rta = new LinkedList<>();

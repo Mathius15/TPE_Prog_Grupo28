@@ -10,8 +10,8 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        String pathProcesadores = "C:\\Users\\Mati\\Desktop\\Tpe_Prog_3_28\\Dataset\\Procesadores.csv";
-        String pathTareas = "C:\\Users\\Mati\\Desktop\\Tpe_Prog_3_28\\Dataset\\Tareas.csv";
+        String pathProcesadores = "C:\\Users\\USUARIO\\Desktop\\Prog3_TPE\\Dataset\\Procesadores.csv";//cambiar dependiendo la pc
+        String pathTareas = "C:\\Users\\USUARIO\\Desktop\\Prog3_TPE\\Dataset\\Tareas.csv";
 
         Servicios servicios = new Servicios(pathProcesadores, pathTareas);
 

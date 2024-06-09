@@ -14,9 +14,18 @@ public class Backtraking {
     private int metrica;
 
     /*
-     * El algoritmo esta implementado por dos metodos principales, uno es el publico el cual se encarga de mostrar el template de la solucion y llamar
-     * al segundo metodo principal, que es privado y se encarga de el manejo interno de las llamadas recursivas hacia el descubrimiento forzado de la
-     * mejor solucion. Ademas para minimzar las posibles soluciones realizamos un chequeo el cual comprueba si una tarea es apta para agregar a un procesador.
+     * El algoritmo immplementado esta compuesto por dos metodos principales.
+     * El Metodo publico denominado "backtracking" se encarga de almacenar las respectivas posibles soluciones y por otro lado la mejor solucion hasta el momento,
+     * pero su principal funcion es hacer el llamado al segundo Metodo principal y privado "back", que recursivamente a recorrer los procesadores y colocar donde
+     * corresponda una tarea.
+     * Este utiliza el Metodo "soySolucion" para comprobar si todas las tareas fueron asignadas a los procesadores y devolver la posible solucion. Caso contrario
+     * se seguiran asignando las tareas.
+     * Es de mayor importancia el Metodo "tiempoMaximoEjecucion", ya que este devuelve el tiempo que toma ejecutar la lista de procesadores. Este Metodo es necesario
+     * para realizar la poda en el Metodo principal "back", que con una simple condicion se va a encargar de comprobar si la posible solucion recorriendose
+     * en ese instante, tiene un tiempo de ejecucion menor al de la actual mejor solucion; en caso de tener un tiempo mayor, esa posible solucion queda descartada.
+     *
+     * Si hay n decisiones posibles en cada paso (procesadores) y la profundidad maxima de la recursion es d (cantidad de tareas), la complejidad
+     * computacional del algoritmo de backtracking es, en el peor de los casos, O(n^d)
      * */
 
     public Backtraking(List<Procesador> pro1, List<Tarea> tar, int n) {

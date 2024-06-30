@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Procesador {
     private String id;
+    private int cantTareasCriticas;
     private String codigoProcesador;
     private boolean estaRefrigerado;
     private int anioFuncionamiento;
@@ -16,6 +17,7 @@ public class Procesador {
         this.estaRefrigerado = estaRefrigerado;
         this.anioFuncionamiento = anioFuncionamiento;
         this.tareas = new ArrayList<>();
+        this.cantTareasCriticas = 0;
     }
 
     public Procesador(String id, String codigoProcesador, boolean estaRefrigerado, int anioFuncionamiento, List<Tarea> tareasnuevas) {
@@ -24,6 +26,7 @@ public class Procesador {
         this.estaRefrigerado = estaRefrigerado;
         this.anioFuncionamiento = anioFuncionamiento;
         this.setTareas(tareasnuevas);
+        this.cantTareasCriticas = 0;
     }
 
     //Cambios mati
@@ -38,7 +41,7 @@ public class Procesador {
 
     public boolean puedoAddTarea(Tarea t, int n) {
         if (t.isEsCritica()) {
-            if (this.cantTareasCriticas() < 2) {
+            if (this.cantTareasCriticas < 2) {
                 if (this.isEstaRefrigerado()) {
                     return true;
                 } else if (!sobrecalentamiento(t, n)) {
@@ -57,6 +60,9 @@ public class Procesador {
 
     public void addTarea(Tarea t) {
         tareas.add(t);
+        if (t.isEsCritica()) {
+            cantTareasCriticas++;
+        }
     }
 
     public void removeTarea(Tarea t) {
@@ -82,22 +88,6 @@ public class Procesador {
         }
     }
 
-    private int cantTareasCriticas() {
-        int rta = 0;
-        for (Tarea t : tareas) {
-            if (t.isEsCritica()) {
-                rta++;
-            }
-        }
-        return rta;
-    }
-
-    private boolean ultimaTareaCritica() {
-        if (tareas.isEmpty()) {
-            return false;
-        }
-        return tareas.get(tareas.size() - 1).isEsCritica();
-    }
 
     public boolean sobrecalentamiento(Tarea t, int n) {
         if (this.isEstaRefrigerado()) {

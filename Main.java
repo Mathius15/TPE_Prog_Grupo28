@@ -13,7 +13,7 @@ public class Main {
         String pathProcesadores = "C:\\Users\\USUARIO\\Desktop\\Prog3_TPE\\Dataset\\Procesadores.csv";//cambiar dependiendo la pc
         String pathTareas = "C:\\Users\\USUARIO\\Desktop\\Prog3_TPE\\Dataset\\Tareas.csv";
 
-        Servicios servicios = new Servicios(pathProcesadores, pathTareas);
+        Servicios servicios = new Servicios(pathTareas);
 
         System.out.println("parte 1");
 

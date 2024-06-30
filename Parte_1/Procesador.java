@@ -32,70 +32,84 @@ public class Procesador {
         return new ArrayList<>(tareas);
     }
 
-    public void setTareas(List<Tarea> list){
+    public void setTareas(List<Tarea> list) {
         this.tareas = list;
     }
 
     public boolean puedoAddTarea(Tarea t, int n) {
-        if (t.isEsCritica()){
-            if ((! this.ultimaTareaCritica()) && ( ! this.sobrecalentamiento(t,n))){
-                return true;
+        if (t.isEsCritica()) {
+            if (this.cantTareasCriticas() < 2) {
+                if (this.isEstaRefrigerado()) {
+                    return true;
+                } else if (!sobrecalentamiento(t, n)) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
-        }
-        else if (this.isEstaRefrigerado()){
-                return true;
-        }
-        else if (! sobrecalentamiento(t,n)) {
-                return true;
+        } else if (this.isEstaRefrigerado()) {
+            return true;
+        } else if (!sobrecalentamiento(t, n)) {
+            return true;
         }
         return false;
     }
 
-    public void addTarea(Tarea t){
+    public void addTarea(Tarea t) {
         tareas.add(t);
     }
 
-    public void removeTarea(Tarea t){
+    public void removeTarea(Tarea t) {
         tareas.remove(t);
     }
 
-    public boolean tengoTarea(Tarea t){
+    public boolean tengoTarea(Tarea t) {
         return tareas.contains(t);
     }
 
-    public int tiempoMaximo(){
+    public int tiempoMaximo() {
         int total = 0;
-        for (Tarea t : tareas){
+        for (Tarea t : tareas) {
             total += t.getTiempoEjecucion();
         }
         return total;
     }
 
-    public void imprimirProcesadorconTareas (){
+    public void imprimirProcesadorconTareas() {
         System.out.print(this.getId() + " : ");
-        for (Tarea t : tareas){
+        for (Tarea t : tareas) {
             System.out.print(t.getId() + " , ");
         }
     }
 
-    private boolean ultimaTareaCritica(){
-        if (tareas.isEmpty()){
+    private int cantTareasCriticas() {
+        int rta = 0;
+        for (Tarea t : tareas) {
+            if (t.isEsCritica()) {
+                rta++;
+            }
+        }
+        return rta;
+    }
+
+    private boolean ultimaTareaCritica() {
+        if (tareas.isEmpty()) {
             return false;
         }
         return tareas.get(tareas.size() - 1).isEsCritica();
     }
 
-    public boolean sobrecalentamiento(Tarea t, int n){
-        if ( this.isEstaRefrigerado()){
+    public boolean sobrecalentamiento(Tarea t, int n) {
+        if (this.isEstaRefrigerado()) {
             return false;
-        } else if ((tiempoMaximo() + t.getTiempoEjecucion() ) >= n){
-                return true;
-            }
+        } else if (tiempoMaximo() + t.getTiempoEjecucion() > n) {
+            return true;
+        }
         return false;
     }
 
     // devuelve true cuando el procesador es mejor (menor tiempo de ejercucion) que otro.
-    public boolean esMejorProcesador(Procesador mejorP){
+    public boolean esMejorProcesador(Procesador mejorP) {
         return (this.tiempoMaximo() < mejorP.tiempoMaximo());
     }
 

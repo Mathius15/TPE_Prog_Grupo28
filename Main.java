@@ -35,13 +35,13 @@ public class Main {
 
 
         procesadores1 = csv.readProcessors(pathProcesadores);
-        int n = 50;
+        int n = 80;
         Backtraking backPrueba = new Backtraking(procesadores1, tareas,n);
         backPrueba.backtracking();
 
         System.out.println("\n");
 
-        Greedy g = new Greedy(procesadores1, tareas, 110);
+        Greedy g = new Greedy(procesadores1, tareas, 10);
         g.greedy();
     }
 }

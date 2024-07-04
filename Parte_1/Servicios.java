@@ -11,11 +11,15 @@ public class Servicios {
 
 
     // Complejidad: O(n)
-    /*La complejidad del constructor es de O(n) ya que tenemos que recorrer todas las tareas (n)
-    * para poder pasarlas de formato .csv a un hash map*/
+    /*La complejidad del constructor es de O(n + m) ya que tenemos que recorrer todas las tareas (n)
+     * para poder pasarlas de formato .csv a un hash map
+     * y tambien debemos recorrer todos los procesadores (m) en el metodo readProcessors del reader.
+     */
 
-    public Servicios(String pathTareas) {
+
+    public Servicios(String pathProcesadores, String pathTareas) {
         CSVReader reader = new CSVReader();
+        reader.readProcessors(pathProcesadores);
         hashTareas = reader.readTasks(pathTareas);
 
         dividirTareas();

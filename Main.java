@@ -13,7 +13,7 @@ public class Main {
         String pathProcesadores = "C:\\Users\\USUARIO\\Desktop\\Prog3_TPE\\Dataset\\Procesadores.csv";//cambiar dependiendo la pc
         String pathTareas = "C:\\Users\\USUARIO\\Desktop\\Prog3_TPE\\Dataset\\Tareas.csv";
 
-        Servicios servicios = new Servicios(pathTareas);
+        Servicios servicios = new Servicios(pathProcesadores, pathTareas);
 
         System.out.println("parte 1");
 
@@ -25,7 +25,7 @@ public class Main {
         System.out.println(servicios.servicio2(false));
         System.out.println(servicios.servicio3(60, 70));
 
-        //Parte 2
+        //Parte 2.
         System.out.println("--------------------------------------------------------------");
         System.out.println("Parte 2");
         CSVReader csv = new CSVReader();
@@ -35,7 +35,7 @@ public class Main {
 
 
         procesadores1 = csv.readProcessors(pathProcesadores);
-        int n = 80;
+        int n = 200;
         Backtraking backPrueba = new Backtraking(procesadores1, tareas,n);
         backPrueba.backtracking();
 
